@@ -2,6 +2,7 @@ package com.Arris.service;
 
 
 import com.Arris.controllers.dto.UsuarioRegistroDTO;
+import com.Arris.models.DetallePedido;
 import com.Arris.models.Rol;
 import com.Arris.models.Usuario;
 import com.Arris.repository.UsuarioRepository;
@@ -31,13 +32,18 @@ public class UsuarioServiceImp implements UsuarioService {
 
     @Override
     public Usuario guardarUsuario(UsuarioRegistroDTO registroDTO) {
-        Usuario usuario = new Usuario(registroDTO.getNombre(),registroDTO.getTelefono(),registroDTO.getEmail(),registroDTO.getDireccion(),passwordEncoder.encode(registroDTO.getPassword()));
+        Usuario usuario = new Usuario(registroDTO.getIdUsuario(),registroDTO.getNombre(),registroDTO.getTelefono(),registroDTO.getEmail(),registroDTO.getDireccion(),passwordEncoder.encode(registroDTO.getPassword()));
         return usuarioRepository.save(usuario);
     }
 
     @Override
     public List<Usuario> listarUsuarios() {
         return usuarioRepository.findAll();
+    }
+
+    @Override
+    public Usuario save(Usuario usuario) {
+        return usuarioRepository.save(usuario);
     }
 
 

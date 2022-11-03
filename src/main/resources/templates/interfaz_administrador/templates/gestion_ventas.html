@@ -77,7 +77,7 @@
                 </h2>
                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                   <div class="accordion-body">
-                    <form th:action="@{/guardar_nuevo_usuario}" th:object="${usuario}" method="post">
+                    <form th:action="@{/registro/guardar_usuario_admin}" th:object="${usuario}" method="post">
                     <div class="row">
                       <div class="col-6">
                         <h5>Cedula De Ciudadania</h5>
@@ -202,7 +202,7 @@
 
               <button type="submit" class="btn m-2" data-bs-target="#modalIngresarVenta" data-bs-toggle="modal">Volver al Menu</button>
 
-              <form th:action="@{/guardar_nueva_venta}" method="post">
+              <form th:action="@{/guardar_nueva_venta_admin}" method="post">
                 <div class="row">
                   <div class="col-6">
                     <h5>ID PEDIDO</h5>
@@ -238,6 +238,16 @@
                         <option value="8">8</option>
                         <option value="9">9</option>
                         <option value="10">10</option>
+                      </select>
+                    </ul>
+                  </div>
+                  <div class="col-6">
+                    <h5>Agregar Envio</h5>
+                    <ul class="nav flex-column">
+                      <select class="form-select" aria-label="Default select example" id="envio" name="envio" required>
+                        <option value="" selected>Abre para seleccionar envio</option>
+                        <option value="si">si</option>
+                        <option value="no">no</option>
                       </select>
                     </ul>
                   </div>

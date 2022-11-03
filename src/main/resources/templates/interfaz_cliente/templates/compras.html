@@ -21,7 +21,9 @@
                     <i class="fas fa-user-circle user"></i>
                   </button>
                   <ul class="dropdown-menu boton" aria-labelledby="dropdownMenuButton1">
-                      <li sec:authorize="isAuthenticated()"><a class="dropdown-item menuperfil cerrar" th:href="@{/logout}"><i class="fas fa-sign-out-alt m-1"></i>Cerrar Sesión</a></li>                  </ul>
+                      <li sec:authorize="isAuthenticated()"><a class="dropdown-item menuperfil cerrar" th:href="@{/logout}"><i class="fas fa-sign-out-alt m-1"></i>Cerrar Sesión</a></li>
+                        <li sec:authorize="isAuthenticated()"><a class="dropdown-item menuperfil cerrar" th:href="@{/registro/editar_datos_cliente}"><i class="fas fa-user-edit m-1"></i></i>Editar Mi Información</a></li>
+                  </ul>
                 </div>
             </div>
         </div>
@@ -34,6 +36,10 @@
                 <nav class="menu d-flex d-sm-block justify-content-center flex-wrap">
                   <a class="nav-link" th:href="@{/compras_cliente}"><i class="fas fa-dollar-sign"></i></i><span>Mis Compras</span></a>
                   <a class="nav-link" th:href="@{/solicitudes_pqrs_cliente}"><i class="far fa-smile"></i><span>Mis Solicitudes PQRS</span></a>
+                    <a class="nav-link enviosBoton d-none" th:href="@{/envios_cliente}" th:each="envio : ${envio}" th:object="${envio}" th:if="${envio.venta.pedido.cliente.email} == ${#authentication.name}"><i class="fas fa-shipping-fast"></i><span>Mis Envios</span></a>
+                    <div>
+
+                    </div>
               </nav>
             </div>
             <main class="main col">
@@ -120,6 +126,9 @@ function estados(){
 }
 }
 estados();
+
+envios = document.getElementsByClassName('enviosBoton')
+envios[0].classList.remove('d-none')
     </script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>

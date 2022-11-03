@@ -10,6 +10,6 @@ import java.util.List;
 public interface UsuarioService extends UserDetailsService {
 
     public Usuario guardarUsuario(UsuarioRegistroDTO registroDTO);
-
+    Usuario save(Usuario usuario);
     public List<Usuario> listarUsuarios();
 }

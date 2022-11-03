@@ -1,9 +1,11 @@
 package com.Arris.controllers;
 
 import com.Arris.models.DetallePedido;
+import com.Arris.models.Envio;
 import com.Arris.models.Pqrs;
 import com.Arris.models.Venta;
 import com.Arris.service.DetallePedidoService;
+import com.Arris.service.EnvioService;
 import com.Arris.service.PqrsService;
 import com.Arris.service.VentaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class PqrsController {
 
     @Autowired
     VentaService ventaService;
+
+    @Autowired
+    private EnvioService envioService;
 
     @GetMapping("/allx")
     public ArrayList<Pqrs> getAllPqrs(){
@@ -52,6 +57,8 @@ public class PqrsController {
         List<DetallePedido> detallePedido = detallePedidoService.getAll();
         List<Pqrs> pqrs =pqrsService.getAll();
         List<Venta> venta =ventaService.getAll();
+        List<Envio> envio = envioService.getAll();
+        model.addAttribute("envio",envio);
         model.addAttribute("venta", venta);
         model.addAttribute("pedido", detallePedido);
         model.addAttribute("listarPqrs",pqrs);

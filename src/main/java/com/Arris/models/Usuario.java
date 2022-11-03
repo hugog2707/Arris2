@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -12,7 +13,6 @@ import java.util.Set;
 public class Usuario {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter @Getter @Column(name = "id_usuario")
     private long idUsuario;
     @Setter @Getter @Column(name = "nombre")
@@ -34,7 +34,8 @@ public class Usuario {
     )
     private Set<Rol> roles;
 
-    public Usuario(String nombre, String telefono, String email, String direccion, String password) {
+
+    public Usuario(long idUsuario, String nombre, String telefono, String email, String direccion, String password) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.telefono = telefono;
@@ -44,7 +45,8 @@ public class Usuario {
         this.roles = roles;
     }
 
-    public Usuario(String nombre, String telefono, String email, String direccion, String password, Set<Rol> roles) {
+    public Usuario(long idUsuario, String nombre, String telefono, String email, String direccion, String password, Set<Rol> roles) {
+        this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.telefono = telefono;
         this.email = email;

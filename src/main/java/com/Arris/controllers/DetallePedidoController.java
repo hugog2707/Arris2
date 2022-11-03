@@ -1,12 +1,10 @@
 package com.Arris.controllers;
 
 import com.Arris.models.*;
-import com.Arris.service.DetallePedidoService;
-import com.Arris.service.PedidoService;
-import com.Arris.service.ProductoService;
-import com.Arris.service.RolUsuarioService;
+import com.Arris.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -35,6 +33,12 @@ public class DetallePedidoController {
     @Autowired
     ProductoService productoService;
 
+    @Autowired
+    EnvioService envioService;
+
+    @Autowired
+    VentaService ventaService;
+
     @GetMapping("/alla")
     public ArrayList<DetallePedido> getAllDetallePedidos(){
         return detallePedidoService.getAll();
@@ -51,10 +55,12 @@ public class DetallePedidoController {
         List<RolUsuario> rolUsuario = rolUsuarioService.getAll();
         List<Pedido> pedido = pedidoService.getAll();
         List<Producto> producto = productoService.getAll();
+        List<Venta> venta = ventaService.getAll();
         model.addAttribute("pedido", detallePedido);
         model.addAttribute("rolUsuario", rolUsuario);
         model.addAttribute("mostrarPedidos", pedido);
         model.addAttribute("producto", producto);
+        model.addAttribute("venta", venta);
         return "interfaz_administrador/templates/gestion_ventas";
     }
 
@@ -72,15 +78,19 @@ public class DetallePedidoController {
     }
 
     @GetMapping("/compras_cliente")
-    public String listarComprasCliente(Model model){
+    public String listarComprasCliente(Model model, Usuario usuario){
         List<DetallePedido> detallePedido = detallePedidoService.getAll();
         List<RolUsuario> rolUsuario = rolUsuarioService.getAll();
         List<Pedido> pedido = pedidoService.getAll();
         List<Producto> producto = productoService.getAll();
+        List<Envio> envio = envioService.getAll();
+        List<Venta> venta = ventaService.getAll();
         model.addAttribute("pedido", detallePedido);
         model.addAttribute("rolUsuario", rolUsuario);
         model.addAttribute("mostrarPedidos", pedido);
         model.addAttribute("producto", producto);
+        model.addAttribute("envio", envio);
+        model.addAttribute("venta", venta);
         return "interfaz_cliente/templates/compras";
     }
 
@@ -89,7 +99,7 @@ public class DetallePedidoController {
         return detallePedidoService.getById(idDetallePedido);
     }
 
-    @PostMapping("/guardar_nueva_venta")
+    @PostMapping("/guardar_nueva_venta_admin")
     public String GuardarVenta(DetallePedido detallePedido, RedirectAttributes redirectAttrs, Usuario usuario) {
         detallePedidoService.save(detallePedido);
         redirectAttrs

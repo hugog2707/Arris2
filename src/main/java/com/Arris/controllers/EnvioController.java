@@ -37,6 +37,13 @@ public class EnvioController {
         return "interfaz_empleado/templates/envios";
     }
 
+    @GetMapping("/envios_cliente")
+    public String listarEnviosCliente(Model model){
+        List<Envio> envio = envioService.getAll();
+        model.addAttribute("envio", envio);
+        return "interfaz_cliente/templates/envios";
+    }
+
     @GetMapping("/findqq/{id}")
     public Optional<Envio> getEnvioById(@PathVariable("id") long idEnvio){
         return envioService.getById(idEnvio);

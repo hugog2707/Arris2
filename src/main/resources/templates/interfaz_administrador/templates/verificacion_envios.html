@@ -23,6 +23,9 @@
             <div class="col-6">
               <h5 th:text="'Nombre Producto: '+${envio.venta.producto}"> </h5>
               <h5 th:text="'Nombre Cliente: '+${envio.venta.pedido.cliente.nombre}"></h5>
+              <h5 th:text="'Dirección Cliente: '+${envio.venta.pedido.cliente.direccion}"> </h5>
+              <h5 th:text="'Telefono Cliente: '+${envio.venta.pedido.cliente.telefono}"> </h5>
+              <h5 th:text="'Email Cliente: '+${envio.venta.pedido.cliente.email}"> </h5>
             </div>
           </div>
         </div>

@@ -23,14 +23,17 @@ public class Venta {
     private long impuesto;
     @JsonIgnore @Setter @Getter @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "id_pedido")
     private Pedido pedido;
+    @Getter @Setter @Column(name = "envio")
+    private String envio;
 
     public Venta() {
     }
 
-    public Venta(String producto, Date fecha, long impuesto, Pedido pedido) {
+    public Venta(String producto, Date fecha, long impuesto, Pedido pedido,String envio) {
         this.producto = producto;
         this.fecha = fecha;
         this.impuesto = impuesto;
         this.pedido = pedido;
+        this.envio = envio;
     }
 }

@@ -1,7 +1,9 @@
 package com.Arris.controllers;
 
+import com.Arris.models.Envio;
 import com.Arris.models.Rol;
 import com.Arris.models.Usuario;
+import com.Arris.service.EnvioService;
 import com.Arris.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,6 +20,9 @@ public class RegistroController {
 
     @Autowired
     private UsuarioService usuarioService;
+
+    @Autowired
+    private EnvioService envioService;
 
 
     @GetMapping("/login")
@@ -42,7 +47,9 @@ public class RegistroController {
     }
 
     @GetMapping("/cliente")
-    public String interfazCliente(){
+    public String interfazCliente(Model model){
+        List<Envio> envio = envioService.getAll();
+        model.addAttribute("envio",envio);
         return "interfaz_cliente/interfaz_cliente";
     }
 }

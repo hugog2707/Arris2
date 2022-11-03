@@ -26,11 +26,13 @@ public class DetallePedido {
     private Pedido pedido;
     @Getter @Setter @Column(name = "estado")
     private String estado;
+    @Getter @Setter @Column(name = "envio")
+    private String envio;
 
     public DetallePedido() {
     }
 
-    public DetallePedido(long idDetallePedido, int cantidad, double precio, double total, Producto producto, Pedido pedido, String estado) {
+    public DetallePedido(long idDetallePedido, int cantidad, double precio, double total, Producto producto, Pedido pedido, String estado, String envio) {
         this.idDetallePedido = idDetallePedido;
         this.cantidad = cantidad;
         this.precio = precio;
@@ -38,5 +40,6 @@ public class DetallePedido {
         this.producto = producto;
         this.pedido = pedido;
         this.estado = estado;
+        this.envio = envio;
     }
 }
